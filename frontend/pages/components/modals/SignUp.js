@@ -1,41 +1,94 @@
 import React from 'react';
 import Image from 'next/image'
 import { Modal, Select, SelectItem, ButtonSet, Link, AspectRatio, TextInput, FormGroup, Button, Grid, Row, Column  } from "carbon-components-react";
+import sendPasswordHash from '../../api/encryption'
 
-const PasswordProps = {
-    className: 'some-class',
-    id: 'test3',
-    labelText: 'Password',
-  };
+
+
+class Signup extends React.Component{
+
+  constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            username: "",
+            password: "",
+            confirmPassword:"",
+            occupation: "Student",
+            invalidPassword: false
+        //     PasswordProps : {
+        //       className: 'some-class',
+        //       id: 'test3',
+        //       ,
+        //     },
+        
+        //   InvalidPasswordProps : {
+        //     className: 'some-class',
+        //     id: 'test4',
+        //     labelText: 'Password',
+        //     invalid: true,
+        //     invalidText:
+        //       'Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.',
+        //   }
+        }
+    }
+    setUsername(e){
+      this.setState({ username: e})
+    }
+
+    setPassword(e){
+        this.setState({ password: e})
+      }
+
+    checkPassword(e){
+      if(this.props.passwordHash(this.state.password) != this.props.passwordHash(e) || this.state.password === ""){
+        this.setState({
+          invalidPassword: true})
+      }
+      else{
+        this.setState({
+          invalidPassword: false})
+      }
+
+    }
+
+    setOccupation(e){
+      this.setState({ occupation: e})
+    }
+    
+
+   handleSubmit(e){
+    if(!this.state.invalidPassword && this.state.username != ""){
+      console.log("Made the account")
+      this.props.handleCloseSignup()
+    }
+  }
   
-  const InvalidPasswordProps = {
-    className: 'some-class',
-    id: 'test4',
-    labelText: 'Password',
-    invalid: true,
-    invalidText:
-      'Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.',
-  };
-  
 
 
-  const Signup = (props) => ( 
-                <Modal modalHeading={props.title}
+  render(){
+    return <Modal modalHeading="Sign Up"
                   primaryButtonText="Submit"
                   secondaryButtonText="Cancel"
-                  open={open}
-                  onRequestClose={() => props.handleClose()}>
+                  open={open} 
+                  onRequestSubmit={(e) => { this.handleSubmit(e)}}
+                  onRequestClose={() => this.props.handleCloseSignup()}>
                      {/* onHide={props.handleClose()}> */}
-                  <TextInput id="one" required labelText="Email" style={{ marginBottom: '1rem' }} />
+                  <TextInput id="email" required labelText="Email" style={{ marginBottom: '1rem' }} onChange={e => { this.setUsername(e.currentTarget.value); }}/>
+                   {/* value={this.state.email} onChange={e => { this.setUsername(e.currentTarget.value); }}  */}
                   
-                  { props.title === "Sign Up" ? <TextInput type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"{...PasswordProps}/> : null}
-                  { props.title === "Sign Up" ? <TextInput type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" {...InvalidPasswordProps}    /> : null}
-                  { props.title === "Sign Up" ? <Select id="select-1" defaultValue="us-south" labelText="Occupation">
+                  <TextInput id="password" type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" labelText='Password' onChange={e => { this.setPassword(e.currentTarget.value); }}/>
+                  
+                  <TextInput id="confirm-password" type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"  labelText='Confirm Password' invalid={this.state.invalidPassword} invalidText={this.state.invalidPassword? "Passwords do not match or The Password provided is empty": null } onChange={e => { this.checkPassword(e.currentTarget.value); }}/> 
+                  
+                  <Select id="occupation" defaultValue="us-south" labelText="Occupation" onChange={e => { this.setOccupation(e.currentTarget.value)}}>
 320              <SelectItem value="student" text="Student" />
 321              <SelectItem value="teacher" text="Teacher" />
-322            </Select> : null }
+322            </Select>
 
-        </Modal>)
+        </Modal>}
+}
 
 export default  Signup;
     
