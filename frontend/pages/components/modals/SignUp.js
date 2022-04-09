@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image'
 import { Modal, Select, SelectItem, ButtonSet, Link, AspectRatio, TextInput, FormGroup, Button, Grid, Row, Column  } from "carbon-components-react";
-import sendPasswordHash from '../../api/encryption'
+import axios from 'axios';
 
 
 
@@ -59,9 +59,19 @@ class Signup extends React.Component{
     
 
    handleSubmit(e){
+     
     if(!this.state.invalidPassword && this.state.username != ""){
-      console.log("Made the account")
+      // console.log("Made the account")
+      axios.post('http://localhost:3000/api/accounts', {
+        username: this.state.username,
+        password: this.props.passwordHash(this.state.password),
+        occupation: this.state.occupation,
+      })
+      .then(response => {
+        console.log(response.data);
+      });
       this.props.handleCloseSignup()
+      e.preventDefault()
     }
   }
   
