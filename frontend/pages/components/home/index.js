@@ -19,70 +19,70 @@ export const sendPasswordHash = (password) => {
     return x
 }
 
-class Login extends React.Component{
+class Home extends React.Component{
 
-    constructor(props)
-    {
-        super(props);
+    // constructor(props)
+    // {
+    //     super(props);
 
-        this.handleShowSignup = this.handleShowSignup.bind(this);
-        this.handleCloseSignup = this.handleCloseSignup.bind(this);
+    //     this.handleShowSignup = this.handleShowSignup.bind(this);
+    //     this.handleCloseSignup = this.handleCloseSignup.bind(this);
 
-        this.handleShowForget = this.handleShowForget.bind(this);
-        this.handleCloseForget = this.handleCloseForget.bind(this);
+    //     this.handleShowForget = this.handleShowForget.bind(this);
+    //     this.handleCloseForget = this.handleCloseForget.bind(this);
 
-        this.state = {
-            username: "",
-            password: "",
-            showModalSignup: false,
-            showModalForget: false,
-            title: "Hello"
-        }
-    }
-
-    // handleOpenSignup() {
-    //     this.setState({ showModal: true,
-    //     title: "Sign Up" });
+    //     this.state = {
+    //         username: "",
+    //         password: "",
+    //         showModalSignup: false,
+    //         showModalForget: false,
+    //         title: "Hello"
+    //     }
     // }
 
-    // handleForgotPassword() {
-    //     this.setState({ showModal: true,
-    //         title: "Forgot Password" });
-    // }
+    // // handleOpenSignup() {
+    // //     this.setState({ showModal: true,
+    // //     title: "Sign Up" });
+    // // }
 
-    handleCloseSignup() {
-        this.setState({ showModalSignup: false});
-      }
+    // // handleForgotPassword() {
+    // //     this.setState({ showModal: true,
+    // //         title: "Forgot Password" });
+    // // }
+
+    // handleCloseSignup() {
+    //     this.setState({ showModalSignup: false});
+    //   }
       
-      handleShowSignup() {
-        this.setState({ showModalSignup: true });
-      }
+    //   handleShowSignup() {
+    //     this.setState({ showModalSignup: true });
+    //   }
 
-      handleCloseForget() {
-        this.setState({ showModalForget: false});
-      }
+    //   handleCloseForget() {
+    //     this.setState({ showModalForget: false});
+    //   }
       
-      handleShowForget() {
-        this.setState({ showModalForget: true });
-      }
+    //   handleShowForget() {
+    //     this.setState({ showModalForget: true });
+    //   }
 
-      handleLogin() {
-          if (this.state.username == "admin@admin.com" && password == "admin"){
-                //authenticated
-          }
-      }
+    //   handleLogin() {
+    //       if (this.state.username == "admin@admin.com" && password == "admin"){
+    //             //authenticated
+    //       }
+    //   }
 
-      setPassword(pwd) {
-        this.setState({
-            password: pwd
-        })
-      }
+    //   setPassword(pwd) {
+    //     this.setState({
+    //         password: pwd
+    //     })
+    //   }
 
-      setUsername(uname){
-            this.setState({
-                username: uname
-            })
-      }
+    //   setUsername(uname){
+    //         this.setState({
+    //             username: uname
+    //         })
+    //   }
     
     render(){
         return <Grid fullWidth style={{ 
@@ -148,4 +148,4 @@ class Login extends React.Component{
 
 }
 
-export default  Login;
+export default  Home;

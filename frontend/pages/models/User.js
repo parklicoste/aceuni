@@ -6,7 +6,7 @@ const UserData = new mongoose.Schema({
         required: [true, 'please provide an email']
     },
     password: {
-        type: Array,
+        type: String,
         required: [true, 'please provide an password']
     },
     occupation: {
