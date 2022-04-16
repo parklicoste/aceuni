@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 
+
 class Signup extends React.Component{
 
   constructor(props)
@@ -62,13 +63,13 @@ class Signup extends React.Component{
      
     if(!this.state.invalidPassword && this.state.username != ""){
       // console.log("Made the account")
-      axios.post('http://localhost:3000/api/accounts', {
-        username: this.state.username,
-        password: this.props.passwordHash(this.state.password),
-        occupation: this.state.occupation,
+      axios.post('http://localhost:3000/',{
+        "username": this.state.username,
+        "password": this.props.passwordHash(this.state.password),
+        "occupation": this.state.occupation
       })
-      .then(response => {
-        console.log(response.data);
+      .then(response => { 
+        // console.log(response.json({ }));
       });
       this.props.handleCloseSignup()
       e.preventDefault()

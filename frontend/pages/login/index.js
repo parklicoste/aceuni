@@ -1,12 +1,17 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image'
-import { ButtonSet, Link, AspectRatio, TextInput, FormGroup, Button, Grid, Row, Column  } from "carbon-components-react";
+import Link from 'next/link';
+
+
+import { Router, useRouter } from 'next/router';
+import { ButtonSet, AspectRatio, TextInput, FormGroup, Button, Grid, Row, Column  } from "carbon-components-react";
 import { Education32, ArrowRight16 } from '@carbon/icons-react';
 // import background from '../../public/img/feather.png'
 // import Login from './Login.sass'
-import Signup from './modals/SignUp'
-import ForgotPassword from './modals/ForgotPassword'
+import Signup from '../components/modals/SignUp';
+import ForgotPassword from '../components/modals/ForgotPassword'
+
 
 var SHA256 = require("crypto-js/sha256");
 
@@ -15,74 +20,84 @@ export const sendPasswordHash = (password) => {
     var x = ""
     for (let i in hash['words'])
         x+=hash['words'][i]
-    // console.log("MY HASH IS: ", x)
+    console.log("MY HASH IS: ", x)
     return x
 }
 
-class Home extends React.Component{
+class Login extends React.Component{
 
-    // constructor(props)
-    // {
-    //     super(props);
+    constructor(props)
+    {
+        super(props);
 
-    //     this.handleShowSignup = this.handleShowSignup.bind(this);
-    //     this.handleCloseSignup = this.handleCloseSignup.bind(this);
+        this.handleShowSignup = this.handleShowSignup.bind(this);
+        this.handleCloseSignup = this.handleCloseSignup.bind(this);
 
-    //     this.handleShowForget = this.handleShowForget.bind(this);
-    //     this.handleCloseForget = this.handleCloseForget.bind(this);
+        this.handleShowForget = this.handleShowForget.bind(this);
+        this.handleCloseForget = this.handleCloseForget.bind(this);
 
-    //     this.state = {
-    //         username: "",
-    //         password: "",
-    //         showModalSignup: false,
-    //         showModalForget: false,
-    //         title: "Hello"
-    //     }
+        this.state = {
+            username: "",
+            password: "",
+            showModalSignup: false,
+            showModalForget: false,
+            title: "Hello"
+        }
+    }
+    componentDidMount(){
+        const {pathname} = Router
+        if(pathname == '/' ){
+           Router.push('/login')
+        }
+    }
+
+    // handleOpenSignup() {
+    //     this.setState({ showModal: true,
+    //     title: "Sign Up" });
     // }
 
-    // // handleOpenSignup() {
-    // //     this.setState({ showModal: true,
-    // //     title: "Sign Up" });
-    // // }
+    // handleForgotPassword() {
+    //     this.setState({ showModal: true,
+    //         title: "Forgot Password" });
+    // }
 
-    // // handleForgotPassword() {
-    // //     this.setState({ showModal: true,
-    // //         title: "Forgot Password" });
-    // // }
-
-    // handleCloseSignup() {
-    //     this.setState({ showModalSignup: false});
-    //   }
+    handleCloseSignup() {
+        this.setState({ showModalSignup: false});
+      }
       
-    //   handleShowSignup() {
-    //     this.setState({ showModalSignup: true });
-    //   }
+      handleShowSignup() {
+        this.setState({ showModalSignup: true });
+      }
 
-    //   handleCloseForget() {
-    //     this.setState({ showModalForget: false});
-    //   }
+      handleCloseForget() {
+        this.setState({ showModalForget: false});
+      }
       
-    //   handleShowForget() {
-    //     this.setState({ showModalForget: true });
-    //   }
+      handleShowForget() {
+        this.setState({ showModalForget: true });
+      }
 
-    //   handleLogin() {
-    //       if (this.state.username == "admin@admin.com" && password == "admin"){
-    //             //authenticated
-    //       }
-    //   }
+      handleLogin() {
+        //   axios.post("http://localhost:3000/login").then( res => {})
+        //   if (this.state.username == "admin@admin.com" && password == "admin"){
+                
+        //   }
+        // let router = useRouter();
+        // router.push('/home')
+          
+      }
 
-    //   setPassword(pwd) {
-    //     this.setState({
-    //         password: pwd
-    //     })
-    //   }
+      setPassword(pwd) {
+        this.setState({
+            password: pwd
+        })
+      }
 
-    //   setUsername(uname){
-    //         this.setState({
-    //             username: uname
-    //         })
-    //   }
+      setUsername(uname){
+            this.setState({
+                username: uname
+            })
+      }
     
     render(){
         return <Grid fullWidth style={{ 
@@ -102,7 +117,7 @@ class Home extends React.Component{
                 <Column md={4} style={{ margin: '2rem 0 0 0'}}>
                         <h2 style={{ margin: '0 0 1rem 42%' }} >About</h2>
                     <AspectRatio ratio="1x1"  >
-                        <p style={{ padding: '2rem 5rem 0 5rem'}}>Hello My name is Khushal Singh, A 4th year compter science student, who is building full stack web application to help the students all around the world in universities, colleges, and students. Currently, I'm working under the supervision of Lou Nel Professor. This is the COMP4905 Honors project. <br></br>Thank You. </p>
+                        <p style={{ padding: '2rem 5rem 0 5rem'}}>Hello My name is adffrfs, <br></br>Thank You. </p>
                     
                     </AspectRatio>
                 </Column>
@@ -117,7 +132,7 @@ class Home extends React.Component{
                             
                             <TextInput type="password" id="two" labelText="Password" requiredpattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" style={{ marginBottom: '1rem' }} value={this.state.password} onChange={e => { this.setPassword(e.currentTarget.value); }}
 />
-                            <Button style={{ margin: '0.5rem 100px', width: '100%', maxWidth: '12.25rem' }} isExpressive renderIcon={ArrowRight16} hasIconOnly iconDescription="Arrow right" kind="primary" onClick={(e)=>this.handleLogin(e) } href='/homepage'>Login</Button>
+                            <Button style={{ margin: '0.5rem 100px', width: '100%', maxWidth: '12.25rem' }} isExpressive renderIcon={ArrowRight16} hasIconOnly iconDescription="Arrow right" kind="primary" onClick={(e)=>this.handleLogin(e) } href='/home'>Login</Button>
                         </FormGroup>
                         <ButtonSet style={{padding: '10px 20px 0px 100px'}}>
 
@@ -143,9 +158,10 @@ class Home extends React.Component{
                     4th Year Honors Projects for Carleton University
                 </h6>
             </Row>
+            
         </Grid>
     }
 
 }
 
-export default  Home;
+export default  Login;
