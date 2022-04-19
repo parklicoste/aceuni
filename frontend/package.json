@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@carbon/grid": "^11.0.0",
     "@carbon/icons-react": "^10.48.0",
     "@svgr/webpack": "^6.2.1",
     "axios": "^0.26.1",

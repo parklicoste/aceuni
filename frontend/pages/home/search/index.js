@@ -3,28 +3,58 @@ import React from 'react';
 // import Search from 'carbon-components-react';
 import { Logout32, Upload24, UserProfile24, Settings24, Education } from '@carbon/icons-react';
 import { Search } from "carbon-components-react";
+    
+const SearchResult = () => (<div className="container">
+                                <h2>Hello User</h2>
+                                <Search
+                                size="xl"
+                                defaultValue=""
+                                placeholder='Course, University, or material'
+                                labelText="Search"
+                                closeButtonLabelText="Clear search input"
+                                id="search-1"/>
+                                <p>
+      Adipiscing elit pellentesque habitant morbi tristique. Est ultricies integer quis auctor elit sed vulputate mi.
+      Sit amet est placerat in egestas erat. Senectus et netus et malesuada fames ac turpis. Non odio euismod lacinia at
+      quis. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Quam pellentesque nec nam aliquam
+      sem. Tortor at auctor urna nunc id cursus metus aliquam. Fames ac turpis egestas maecenas. Auctor urna nunc id
+      cursus metus aliquam eleifend. Non quam lacus suspendisse faucibus interdum posuere lorem ipsum. Dolor morbi non
+      arcu risus quis varius quam quisque id. Eget velit aliquet sagittis id consectetur. Tortor vitae purus faucibus
+      ornare suspendisse sed nisi lacus sed. Convallis aenean et tortor at risus viverra adipiscing at in.
+    </p>
 
+    <p>
+      Augue ut lectus arcu bibendum at varius vel pharetra. Nisi est sit amet facilisis magna etiam tempor orci eu. Enim
+      nunc faucibus a pellentesque sit amet porttitor eget. Purus viverra accumsan in nisl nisi. Vitae aliquet nec
+      ullamcorper sit amet risus nullam eget. Nulla facilisi cras fermentum odio eu feugiat pretium. Sed odio morbi quis
+      commodo odio aenean. Iaculis nunc sed augue lacus viverra vitae congue. Purus viverra accumsan in nisl. Risus
+      ultricies tristique nulla aliquet enim tortor at. Nec tincidunt praesent semper feugiat nibh. Dui id ornare arcu
+      odio ut sem. Nunc non blandit massa enim nec dui nunc. Eu tincidunt tortor aliquam nulla facilisi cras fermentum
+      odio eu. Bibendum enim facilisis gravida neque convallis a cras semper. Adipiscing commodo elit at imperdiet dui
+      accumsan. Elit ut aliquam purus sit amet luctus. Elementum nisi quis eleifend quam adipiscing vitae.
+    </p>
+
+ {/* here i'm going to map the results */}
+</div>);
+
+// class SearchResult extends React.Component{
     
 
+//     render(){
+//         return (<div className="container">
+//             <h2>Hello User</h2>
+//         <Search
+//             size="xl"
+//             defaultValue=""
+//             placeholder='Course, University, or material'
+//             labelText="Search"
+//             closeButtonLabelText="Clear search input"
+//             id="search-1"/>
 
-class SearchResult extends React.Component{
-    
-
-    render(){
-        return (<div className="container">
-        <Search
-            size="xl"
-            defaultValue=""
-            placeholder='Course, University, or material'
-            labelText="Search"
-            closeButtonLabelText="Clear search input"
-            id="search-1"/>
-
-             {/* here i'm going to map the results */}
-      </div>)}
+//              {/* here i'm going to map the results */}
+//       </div>)}
               
-  }
-
+//   }
 export default  SearchResult;
 
 // const StoryContent = () => {

@@ -1,10 +1,11 @@
 import React, { useEffect,useState } from "react"
 import Router from 'next/router'
+import Login from './login'
 
 // import styles from '../node_modules/carbon-components-react/umd/carbon-components-react.min.js'
 
-export default function Home() {
 
+export default function Home() {
   const [loaded,setLoaded] = useState(false)
     useEffect(() => {
         const {pathname} = Router
@@ -19,7 +20,9 @@ export default function Home() {
             setLoaded(false)
         }
       },[]);
-    return ( 
-      <div>Not loaded, Redirecting to login Page</div>
+    return ( <div></div>
+    //   <Layout>
+    //     <Login/>
+    // </Layout>
     )
 }
