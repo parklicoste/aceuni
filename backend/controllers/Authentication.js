@@ -11,14 +11,12 @@ module.exports = {
         });
     
         
-        newUser.save().then((user)=>{
-            res.status(201).json({
-                    success: true,
-                    user: user
-            }); 
-        }).catch((err)=>{
-            res.status(500).json("Error");   
-        });
+        try{
+            const savedUser = await newUser.save();
+            res.status(201).json(savedUser);
+        }catch(err){
+            res.status(500).json(err);
+        }
     },
 
     login : async(req,res) =>{
