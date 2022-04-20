@@ -1,15 +1,13 @@
 import React from 'react';
-// import Search20 from "@carbon/icons-react/lib/search/20";
-// import Search from 'carbon-components-react';
-import { Logout32, Upload24, UserProfile24, Settings24, Education } from '@carbon/icons-react';
 import { Button, Row, Column, Form, TextInput } from "carbon-components-react";
+import Layout from '../../components/layout/Layout';
 
 const divStyle = {
     margin: '10px 0 20px 0'
   };
 
 
-const Settings = () => (<div className="bx--grid" style={divStyle}>
+const Settings = () => (<Layout><div className="bx--grid" style={divStyle}>
 <div className="bx--row"  style={divStyle}>
 <Row><h2>Settings</h2></Row>
 </div>
@@ -46,7 +44,7 @@ const Settings = () => (<div className="bx--grid" style={divStyle}>
     </Form></div>
 
 {/* here i'm going to map the results */}
-</div>)
+</div></Layout>)
 
             
             

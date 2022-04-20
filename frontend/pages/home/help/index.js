@@ -1,24 +1,13 @@
 import React from 'react';
 import {UserAvatarFilledAlt32} from '@carbon/icons-react'
-import {
-    Form,
-    TextArea,
-    Button,
-  } from "carbon-components-react";
-// import styles from './styles.css'
-
-// import Search20 from "@carbon/icons-react/lib/search/20";
-// import Search from 'carbon-components-react';
-import { Logout32, Upload24, UserProfile24, Settings24, Education } from '@carbon/icons-react';
-import { Search } from "carbon-components-react";
-
-import Layout from '../../../src/components/layout';
+import {Form, TextArea, Button} from "carbon-components-react";
+import Layout from '../../components/layout/Layout';
 
 const divStyle = {
     marginTop: '15px'
   };
 
-const Help = () => (<div className="bx--grid">
+const Help = () => (<Layout><div className="bx--grid">
     <div className="bx--row"  style={divStyle}>
     <h2 style={divStyle}>Our Mission</h2>
     </div>
@@ -84,9 +73,7 @@ const Help = () => (<div className="bx--grid">
     </div>
 
  {/* here i'm going to map the results */}
-</div>);
+</div></Layout>);
 
-
-// Help.Layout = MainLayout;
 export default  Help;
 

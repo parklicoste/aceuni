@@ -13,6 +13,7 @@ import { Logout32, Upload24, UserProfile24, Settings24, Education } from '@carbo
 import { Search } from "carbon-components-react";
 import { TextInput } from 'carbon-components-react';
 import { NumberInput, Row, Column } from 'carbon-components-react';
+import Layout from '../../components/layout/Layout';
 
 const divStyle = {
     margin: '0 0 15px 0'
@@ -21,7 +22,8 @@ const padStyle = {
     padding: '15px'
 }
 
-const Profile = () => (<div className="bx--grid">
+const Profile = () => (<Layout>
+  <div className="bx--grid">
     <div className="bx--row"  style={divStyle}>
     <h2 style={divStyle}>Profiles</h2>
     </div>
@@ -45,16 +47,8 @@ const Profile = () => (<div className="bx--grid">
     </div>
 
  {/* here i'm going to map the results */}
-</div>);
+</div>
+</Layout>);
 
-
-// Profile.Layout = DefaultLayout;
-// Profile.getLayout = function getLayout(Profile) {
-//   return (
-//     <Layout>
-//       <NestedLayout>{Profile}</NestedLayout>
-//     </Layout>
-//   )
-// }
 export default  Profile;
 

@@ -1,9 +1,6 @@
 import React from 'react';
-// import Search20 from "@carbon/icons-react/lib/search/20";
-// import Search from 'carbon-components-react';
-import { Logout32, Upload24, UserProfile24, Settings24, Education } from '@carbon/icons-react';
 import { Button, Row, Select, Form, TextInput, SelectItem, TextArea, FileUploader } from "carbon-components-react";
-    
+import Layout from '../../components/layout/Layout';
 
 const divStyle = {
     margin: '10px 0 20px 0'
@@ -15,7 +12,8 @@ const divStyle = {
 const Upload = (args) => {
     // const prefix = usePrefix();
 
-    return (<div className="bx--grid" >
+    return (<Layout>
+      <div className="bx--grid" >
 <div className="bx--row"  style={divStyle}>
 <Row><h2>Upload Material</h2></Row>
 </div>
@@ -46,6 +44,6 @@ const Upload = (args) => {
     </Form></div>
 
 {/* here i'm going to map the results */}
-</div>)}
+</div></Layout>)}
 // Settings.Layout = DefaultLayout;
 export default Upload;
