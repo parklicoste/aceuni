@@ -21,41 +21,45 @@ module.exports = {
         });
     },
 
-    // login : async(req,res) =>{
+    login : async(req,res) =>{
 
-    //     const email = req.body.email;
-    //     const password = req.body.password;
+        const username = req.body.username;
+        const password = req.body.password;
     
-    //     if(!email || !password){
-    //         res.status(402).json("Credentials has to be provided");
-    //     }
+        if(!username || !password){
+            res.status(402).json("Credentials has to be provided");
+        }
     
-    //     try{
+        try{
             
-    //         const user = await User.findOne({email:email})
-    //         if(!user){
-    //             res.status(401).json("User not found");
-    //         }
+            const user = await User.findOne({username:username})
+            if(!user){
+                res.status(401).json("User not found");
+            }
 
-    //         user.comparedPassword(password,(err,good)=>{
+            // user.comparedPassword(password,(err,good)=>{
 
                 
-    //             if(err){
-    //                 res.status(401).json("Wrong credentials");
-    //                 return;
-    //             }
+            //     if(err){
+            //         res.status(401).json("Wrong credentials");
+            //         return;
+            //     }
                 
-    //             res.status(201).json({
-    //                 loginSuccess: true,
-    //                 token:token.generateToken(user)
-    //             });
+            //     res.status(201).json({
+            //         loginSuccess: true,
+            //         token:token.generateToken(user)
+            //     });
 
-    //         })
+            // })
+            res.status(201).json({
+                loginSuccess: true,
+                user:user
+            });
     
-    //     }catch(error){
-    //         res.status(500).json(error);
-    //     }
+        }catch(error){
+            res.status(500).json(error);
+        }
     
-    // }
+    }
 
 }
