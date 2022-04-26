@@ -50,7 +50,11 @@ class Signup extends React.Component{
      
     if(!this.state.invalidPassword && this.state.username != ""){
       // console.log("Made the account")
+<<<<<<< Updated upstream
       axios.post('http://localhost:8080/api/Authentication/signup',{
+=======
+      axios.post('http://localhost:3000/api/auth/signup',{
+>>>>>>> Stashed changes
         "username": this.state.username,
         "password": this.props.passwordHash(this.state.password),
         "occupation": this.state.occupation

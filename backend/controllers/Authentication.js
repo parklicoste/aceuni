@@ -9,14 +9,16 @@ module.exports = {
             password: req.body.password,
             occupation: String(req.body.occupation).toLowerCase() 
         });
-    
-        
-        try{
-            const savedUser = newUser.save();
-            res.status(201).json(savedUser);
-        }catch(err){
-            res.status(500).json(err);
-        }
+
+    console.log(newUser)
+        newUser.save().then((user)=>{
+            res.status(201).json({
+                    success: true,
+                    user: user
+            }); 
+        }).catch((err)=>{
+            res.status(500).json("Error");   
+        });
     },
 
     login : async(req,res) =>{
