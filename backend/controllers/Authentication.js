@@ -5,14 +5,14 @@ module.exports = {
     register : (req,res) =>{
     
         const newUser = new User({
-            username: req.body.name,
+            username: String(req.body.username).toLowerCase(),
             password: req.body.password,
             occupation: String(req.body.occupation).toLowerCase() 
         });
     
         
         try{
-            const savedUser = await newUser.save();
+            const savedUser = newUser.save();
             res.status(201).json(savedUser);
         }catch(err){
             res.status(500).json(err);
@@ -30,7 +30,7 @@ module.exports = {
     
         try{
             
-            const user = await User.findOne({username:username})
+            const user = await User.findOne({username:String(username).toLowerCase()})
             if(!user){
                 res.status(401).json("User not found");
             }

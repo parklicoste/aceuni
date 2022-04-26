@@ -1,14 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image'
-import Link from 'next/link';
-
-
-import { Router, useRouter } from 'next/router';
+import axios from 'axios'
+import { withRouter } from 'next/router';
 import { ButtonSet, AspectRatio, TextInput, FormGroup, Button, Grid, Row, Column  } from "carbon-components-react";
 import { Education32, ArrowRight16 } from '@carbon/icons-react';
-// import background from '../../public/img/feather.png'
-// import Login from './Login.sass'
 import Signup from '../components/modals/SignUp';
 import ForgotPassword from '../components/modals/ForgotPassword'
 
@@ -20,9 +16,9 @@ export const sendPasswordHash = (password) => {
     var x = ""
     for (let i in hash['words'])
         x+=hash['words'][i]
-    console.log("MY HASH IS: ", x)
     return x
 }
+
 
 class Login extends React.Component{
 
@@ -44,23 +40,7 @@ class Login extends React.Component{
             title: "Hello"
         }
     }
-    componentDidMount(){
-        const {pathname} = Router
-        if(pathname == '/' ){
-           Router.push('/login')
-        }
-    }
-
-    // handleOpenSignup() {
-    //     this.setState({ showModal: true,
-    //     title: "Sign Up" });
-    // }
-
-    // handleForgotPassword() {
-    //     this.setState({ showModal: true,
-    //         title: "Forgot Password" });
-    // }
-
+    
     handleCloseSignup() {
         this.setState({ showModalSignup: false});
       }
@@ -77,14 +57,26 @@ class Login extends React.Component{
         this.setState({ showModalForget: true });
       }
 
-      handleLogin() {
-        //   axios.post("http://localhost:3000/login").then( res => {})
-        //   if (this.state.username == "admin@admin.com" && password == "admin"){
-                
-        //   }
-        // let router = useRouter();
-        // router.push('/home')
-          
+      handleLogin(e) {
+        // e.preventDefault();
+        if(this.state.username === "" || this.state.password === ""){
+            alert("Credentials cannot be empty")
+        }
+        else{
+            axios.post('http://localhost:8080/api/Authentication/login',{
+                "username": this.state.username,
+                "password": sendPasswordHash(this.state.password),
+            })
+            .then(response => { 
+                console.log(response);
+                // router.push('/home')
+                this.props.router.push('/home')
+
+            }).catch((err) => {
+                console.log(err)
+                alert("Wrong Password, Try forgot password");
+            })
+        }
       }
 
       setPassword(pwd) {
@@ -132,7 +124,7 @@ class Login extends React.Component{
                             
                             <TextInput type="password" id="two" labelText="Password" requiredpattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" style={{ marginBottom: '1rem' }} value={this.state.password} onChange={e => { this.setPassword(e.currentTarget.value); }}
 />
-                            <Button style={{ margin: '0.5rem 100px', width: '100%', maxWidth: '12.25rem' }} isExpressive renderIcon={ArrowRight16} hasIconOnly iconDescription="Arrow right" kind="primary" onClick={(e)=>this.handleLogin(e) } href='/home'>Login</Button>
+                            <Button style={{ margin: '0.5rem 100px', width: '100%', maxWidth: '12.25rem' }} isExpressive renderIcon={ArrowRight16} hasIconOnly iconDescription="Arrow right" kind="primary" onClick={(e)=>this.handleLogin(e) }>Login</Button>
                         </FormGroup>
                         <ButtonSet style={{padding: '10px 20px 0px 100px'}}>
 
@@ -154,8 +146,8 @@ class Login extends React.Component{
 
             <Row style={{ margin: '2rem 2rem 5% 30%', whiteSpace: 'nowrap', borderTopWidth: '0px' }} >
                 <h6 style={{textAlign: 'center'}}>
-                    Copyright@ Khushal Kumar Singh <br></br>
-                    4th Year Honors Projects for Carleton University
+                    Copyright@  <br></br>
+                   
                 </h6>
             </Row>
             
@@ -164,4 +156,4 @@ class Login extends React.Component{
 
 }
 
-export default  Login;
+export default  withRouter(Login);

@@ -1,10 +1,10 @@
 import React from 'react';
-// import Search20 from "@carbon/icons-react/lib/search/20";
-// import Search from 'carbon-components-react';
-import { Logout32, Upload24, UserProfile24, Settings24, Education } from '@carbon/icons-react';
 import { Search } from "carbon-components-react";
     
-const SearchResult = () => (<div className="container">
+const SearchResult = () => {
+
+
+  return(<div className="container">
                                 <h2>Hello User</h2>
                                 <Search
                                 size="xl"
@@ -35,7 +35,7 @@ const SearchResult = () => (<div className="container">
     </p>
 
  {/* here i'm going to map the results */}
-</div>);
+</div>)};
 
 // class SearchResult extends React.Component{
     

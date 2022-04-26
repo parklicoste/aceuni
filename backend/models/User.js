@@ -19,6 +19,14 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:false,
     },
+    contribution:{
+        type:Number,
+        required:false,
+    },
+    mobile:{
+        type:Number,
+        required:false,
+    },
 
 });
 

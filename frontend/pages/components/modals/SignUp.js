@@ -18,20 +18,7 @@ class Signup extends React.Component{
             confirmPassword:"",
             occupation: "Student",
             invalidPassword: false
-        //     PasswordProps : {
-        //       className: 'some-class',
-        //       id: 'test3',
-        //       ,
-        //     },
         
-        //   InvalidPasswordProps : {
-        //     className: 'some-class',
-        //     id: 'test4',
-        //     labelText: 'Password',
-        //     invalid: true,
-        //     invalidText:
-        //       'Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.',
-        //   }
         }
     }
     setUsername(e){
@@ -63,14 +50,19 @@ class Signup extends React.Component{
      
     if(!this.state.invalidPassword && this.state.username != ""){
       // console.log("Made the account")
-      axios.post('http://localhost:3000/',{
+      axios.post('http://localhost:8080/api/Authentication/signup',{
         "username": this.state.username,
         "password": this.props.passwordHash(this.state.password),
         "occupation": this.state.occupation
       })
       .then(response => { 
-        // console.log(response.json({ }));
-      });
+        console.log(response);
+      }).catch((err) => {
+        console.log(err)
+        if(err === "Account already exists"){
+          alert("Account already exists, try forgot password");
+        }
+      })
       this.props.handleCloseSignup()
       e.preventDefault()
     }

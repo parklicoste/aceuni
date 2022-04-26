@@ -1,4 +1,4 @@
-import { Logout32, Upload24, UserProfile24, Settings24, Education } from '@carbon/icons-react';
+import { Logout32, Upload24, UserProfile24, Settings24, Education32 } from '@carbon/icons-react';
 import { HeaderNavigation, HeaderMenuItem, HeaderMenu, HeaderContainer, HeaderMenuButton, Header, HeaderName,
     HeaderGlobalAction, HeaderGlobalBar, SideNav, SideNavItems, SideNavLink, SkipToContent} from "carbon-components-react/lib/components/UIShell";
 import { useRouter } from 'next/router';
@@ -18,10 +18,11 @@ const Layout = ({children}) => {
                                     onClick={onClickSideNavExpand}
                                     isActive={isSideNavExpanded}
                                 />
-                                <HeaderName onClick={() => push('/home')} renderIcon={Education} prefix="">
-                                    ACEUNI
+                                <HeaderName onClick={() => push('/home')}  prefix="">
+                                <Education32 /> 
+                                ACEUNI
                                 </HeaderName>
-                                <HeaderNavigation aria-label="Aceuni ">
+                                <HeaderNavigation aria-label="Aceuni">
                                     <HeaderMenuItem onClick={() => push('/home/help')}>Help</HeaderMenuItem>
                                     <HeaderMenuItem href="#">Donate</HeaderMenuItem>
                                     <HeaderMenu aria-label="univerities" menuLinkName="Univerities">
@@ -37,14 +38,9 @@ const Layout = ({children}) => {
 
                                 </HeaderNavigation>
                                 <HeaderGlobalBar>
-                                    {/* <HeaderGlobalAction aria-label="Search" onClick={() => {}}>
-                    <Search20 />
-                  </HeaderGlobalAction> 
-                  <HeaderGlobalAction aria-label="Notifications" onClick={() => {}}>
-                    <Notification20 />
-                  </HeaderGlobalAction> */}
+                        
                                     <HeaderGlobalAction aria-label="Logout" onClick={() => push('/login')}>
-                                        <Logout32 style={{ "margin-right": "15px" }} />
+                                        <Logout32 style={{ "marginRight": "15px" }} />
                                     </HeaderGlobalAction>
                                 </HeaderGlobalBar>
                                 <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
@@ -73,7 +69,7 @@ const Layout = ({children}) => {
                     )}
                 />
             </div>
-            <div style={{ zIndex: 5, marginLeft:'16rem' }}>
+            <div style={{ zIndex: 5, margin:'2rem 0 0 16rem' }}>
                 {children}
             </div>
         </>
